@@ -5,7 +5,8 @@ import Data.Maybe (fromMaybe)
 n :: Integer
 n = 600851475143
 
-main = print $ largestPrimeFactor n
+main = do
+  print $ largestPrimeFactor n
 
 largestPrimeFactor :: Integer -> Integer
 largestPrimeFactor x
