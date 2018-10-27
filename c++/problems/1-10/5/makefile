@@ -2,6 +2,6 @@
 
 
 make:
-	ghc P5.hs
+	g++ -o P5 P5.cpp
 	./P5
 
