@@ -5,8 +5,30 @@ using namespace std;
 
 class primes {
 public:
-  bool isPrime(uint n) {}
-// private:
+  bool isPrime(uint n) {
+    while (primeSetTop() < n) {
+      primeSetNext();
+    }
+    return isInPrimeSet(n);
+  }
+  // Note: this is O(n)
+  uint nthPrime(uint n) {
+    while(primeSet.size() < n) {
+      primeSetNext();
+    }
+    set<uint>::iterator it=primeSet.cbegin();
+    for (uint count = 1; count<n; ++count) {
+      ++it;
+    }
+    return (*it);
+  }
+  void primeSetPrintAll() {
+    set<uint>::iterator it;
+    for (it = primeSet.cbegin(); it != primeSet.cend(); ++it) {
+      cout << (*it) << '\n';
+    }
+  }
+private:
   set<uint> primeSet = {2,3};
   uint primeSetTop() {
     set<uint>::reverse_iterator rit = primeSet.crbegin();
@@ -26,23 +48,12 @@ public:
       }
     }
   }
-  void primeSetPrintAll() {
-    set<uint>::iterator it;
-    for (it = primeSet.cbegin(); it != primeSet.cend(); ++it) {
-      cout << (*it) << '\n';
-    }
-  }
 };
 
 int main() {
   primes * p = new primes();
-//  cout << p->primeSetTop();
-  p->primeSetNext();
-  p->primeSetNext();
-  p->primeSetNext();
-  p->primeSetNext();
-  p->primeSetNext();
-  p->primeSetPrintAll();
+  uint n = 10001;
+  cout << p->nthPrime(n);
 }
 
 
